@@ -1,20 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <!-- <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
       content="Web site created using create-react-app"
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    
+    <meta name="importmap-type" content="systemjs-importmap" />
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.8.3/lib/system/single-spa.min.js",
+          "react": "https://cdn.jsdelivr.net/npm/react@16.13.1/umd/react.production.min.js",
+          "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.13.1/umd/react-dom.production.min.js"
+        }
+      }
+    </script>
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@5.8.3/lib/system/single-spa.min.js" as="script">
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "@nickpith/root-config": "http://localhost:3000/nickpith-root-config.js",
+          "@nickpith/app1": "http://localhost:3001/nickpith-app1.js"
+        }
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.0/dist/system.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.0/dist/extras/amd.js"></script>
+
+    <!-- <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" /> -->
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!-- <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> -->
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -28,7 +52,10 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root" style="height: 100%;"></div>
+    <script>
+      System.import('@nickpith/root-config');
+    </script>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

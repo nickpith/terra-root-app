@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { start, registerApplication } from "single-spa";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -10,6 +11,13 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+/* eslint-disable no-restricted-properties, no-undef */
+registerApplication({
+  name: "@nickpith/app1",
+  app: () => System.import("@nickpith/app1"),
+  activeWhen: ["/app1"]
+});
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
